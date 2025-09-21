@@ -88,7 +88,7 @@ body {
   width: 24px;
   height: 24px;
   margin-right: 8px;
-  background-color: #FF2E4D;
+  background-color: #000000;
   border-radius: 50%;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2v-6h2v6z'/%3E%3C/svg%3E");
   background-size: 16px;
