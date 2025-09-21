@@ -245,7 +245,13 @@ function typeMessage(content, messageId, sectionId) {
   // 检查是否为markdown格式并解析
   if (isMarkdown(state.currentMessageContent)) {
     // 如果是markdown，使用marked解析完整内容
-    state.currentSessionBubble.innerHTML = marked.parse(state.currentMessageContent);
+    if (typeof marked !== 'undefined') {
+      state.currentSessionBubble.innerHTML = marked.parse(state.currentMessageContent);
+    } else {
+      // 如果marked未定义，则使用普通文本
+      state.currentSessionBubble.innerHTML = '<p>' + escapeHtml(state.currentMessageContent) + '</p>';
+      console.warn('marked库未加载，无法解析Markdown');
+    }
   } else {
     // 如果不是markdown，使用文本内容
     state.currentSessionBubble.innerHTML = '<p>' + escapeHtml(state.currentMessageContent) + '</p>';
@@ -283,12 +289,12 @@ function createTypingIndicator() {
     '<div class="avatar">' +
       '<div class="ai-icon">' +
         // 注意：请将下面的路径替换为您实际的PNG图片路径
-        '<img src="https://i.postimg.cc/g0zdGspF/AI.png" width="24" height="24" alt="AI头像">' +
+        '<img src="D:/桌面文件/素材/AI头像.png" width="24" height="24" alt="AI头像">' +
       '</div>' +
     '</div>' +
     '<div class="message-content">' +
       '<div class="message-header">' +
-        '<span class="ai-name">抖小芒AI</span>' + // 保持统一的AI名称
+        '<span class="ai-name">小芒AI</span>' + // 保持统一的AI名称
       '</div>' +
       '<div class="message-text">' +
         '<div class="typing-dots">' +
@@ -356,7 +362,13 @@ function createAIMessage(text) {
   var messageContent;
   if (isMarkdown(text)) {
     // 如果是markdown，使用marked解析内容
-    messageContent = marked.parse(text);
+    if (typeof marked !== 'undefined') {
+      messageContent = marked.parse(text);
+    } else {
+      // 如果marked未定义，则使用普通文本
+      messageContent = '<p>' + escapeHtml(text) + '</p>';
+      console.warn('marked库未加载，无法解析Markdown');
+    }
   } else {
     // 如果不是markdown，使用转义后的文本内容
     messageContent = '<p>' + escapeHtml(text) + '</p>';
@@ -366,7 +378,7 @@ function createAIMessage(text) {
     '<div class="avatar">' +
       '<div class="ai-icon">' +
         // 注意：请将下面的路径替换为您实际的PNG图片路径
-        '<img src="https://i.postimg.cc/g0zdGspF/AI.png" width="24" height="24" alt="AI头像">' +
+        '<img src="D:/桌面文件/素材/AI头像.png" width="24" height="24" alt="AI头像">' +
       '</div>' +
     '</div>' +
     '<div class="message-content">' +
@@ -660,3 +672,5 @@ downBtn.addEventListener('touchstart', (e) => {
   e.preventDefault(); // 阻止默认的触摸行为
   triggerDownButtonAnimation();
 });
+
+
