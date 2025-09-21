@@ -672,5 +672,3 @@ downBtn.addEventListener('touchstart', (e) => {
   e.preventDefault(); // 阻止默认的触摸行为
   triggerDownButtonAnimation();
 });
-
-
