@@ -4,23 +4,23 @@ const sectionStates = {};
 // 为每个section定义独立的API参数
 const sectionConfigs = {
   section1: {
-    accessToken: "pat_6SVX5U5jTkr2wPAwqe2R7K0iUKkwsmbb6sajyjQTqzRAyfoOfkZVJtUMwwqsLnua",
+    accessToken: "pat_vbdoC7VmlT0GXPivOLBU8Az3O7u5oI8rjqAeYYBsFGndFxQjjXs8GuPNSaD1iRs5",
     botId: "7539088830415503406"
   },
   section2: {
-    accessToken: "pat_6SVX5U5jTkr2wPAwqe2R7K0iUKkwsmbb6sajyjQTqzRAyfoOfkZVJtUMwwqsLnua",
+    accessToken: "pat_vbdoC7VmlT0GXPivOLBU8Az3O7u5oI8rjqAeYYBsFGndFxQjjXs8GuPNSaD1iRs5",
     botId: "7542217747586039846"  // 不同的bot_id
   },
   section3: {
-    accessToken: "pat_6SVX5U5jTkr2wPAwqe2R7K0iUKkwsmbb6sajyjQTqzRAyfoOfkZVJtUMwwqsLnua",
+    accessToken: "pat_vbdoC7VmlT0GXPivOLBU8Az3O7u5oI8rjqAeYYBsFGndFxQjjXs8GuPNSaD1iRs5",
     botId: "7542278322881904650"  // 不同的bot_id
   },
   section4: {
-    accessToken: "pat_6SVX5U5jTkr2wPAwqe2R7K0iUKkwsmbb6sajyjQTqzRAyfoOfkZVJtUMwwqsLnua",
+    accessToken: "pat_vbdoC7VmlT0GXPivOLBU8Az3O7u5oI8rjqAeYYBsFGndFxQjjXs8GuPNSaD1iRs5",
     botId: "7542276266360487963"  // 不同的bot_id
   },
   section5: {
-    accessToken: "pat_6SVX5U5jTkr2wPAwqe2R7K0iUKkwsmbb6sajyjQTqzRAyfoOfkZVJtUMwwqsLnua",
+    accessToken: "pat_vbdoC7VmlT0GXPivOLBU8Az3O7u5oI8rjqAeYYBsFGndFxQjjXs8GuPNSaD1iRs5",
     botId: "7542259933534863369"  // 不同的bot_id
   }
 };
