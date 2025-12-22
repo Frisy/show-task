@@ -1,6 +1,106 @@
 // 全局状态变量（为每个section维护独立的状态）
 const sectionStates = {};
 
+// Markdown解析器初始化
+function initializeMarkdownParser() {
+  // 等待marked库加载完成
+  if (typeof marked !== 'undefined') {
+    // 配置marked选项
+    if (marked.setOptions) {
+      marked.setOptions({
+        breaks: true,        // 支持换行
+        gfm: true,           // 启用GitHub风格的Markdown
+        headerIds: false,    // 禁用自动生成标题ID
+        mangle: false        // 禁用邮箱地址混淆
+      });
+    }
+    console.log('Marked库已成功加载并配置');
+    return true;
+  } else {
+    console.warn('Marked库未加载，Markdown渲染将不可用');
+    return false;
+  }
+}
+
+// 简单的Markdown转换函数（备用方案）
+function simpleMarkdownParse(content) {
+  if (!content) return '';
+  
+  let html = content;
+  
+  // 代码块 ```code```
+  html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+  
+  // 行内代码 `code`
+  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+  
+  // 标题 # ## ###
+  html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+  
+  // 粗体 **text** 或 __text__
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
+  
+  // 斜体 *text* 或 _text_
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  html = html.replace(/_(.+?)_/g, '<em>$1</em>');
+  
+  // 链接 [text](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+  
+  // 无序列表 - 或 *
+  html = html.replace(/^[\*\-\+] (.+)$/gim, '<li>$1</li>');
+  html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+  
+  // 有序列表 1. 2. 3.
+  html = html.replace(/^\d+\. (.+)$/gim, '<li>$1</li>');
+  
+  // 换行（两个空格或换行符）
+  html = html.replace(/\n\n/g, '</p><p>');
+  html = html.replace(/\n/g, '<br>');
+  
+  // 如果内容没有被包裹在标签中，添加段落标签
+  if (!html.trim().startsWith('<')) {
+    html = '<p>' + html + '</p>';
+  }
+  
+  return html;
+}
+
+// 统一的Markdown解析函数
+function parseMarkdown(content) {
+  if (!content || content.trim() === '') {
+    return '<p></p>';
+  }
+  
+  try {
+    if (typeof marked !== 'undefined') {
+      // marked v4+ 使用 marked.parse()
+      if (typeof marked.parse === 'function') {
+        return marked.parse(content);
+      } 
+      // marked v3 使用 marked()
+      else if (typeof marked === 'function') {
+        return marked(content);
+      }
+      // marked v2 使用 marked.parse()
+      else if (marked.marked && typeof marked.marked.parse === 'function') {
+        return marked.marked.parse(content);
+      }
+    }
+    
+    // 如果marked不可用，使用简单的Markdown转换
+    console.warn('Marked库不可用，使用简单Markdown转换');
+    return simpleMarkdownParse(content);
+  } catch (error) {
+    console.error('Markdown解析错误:', error);
+    // 解析失败时使用简单的Markdown转换，保持Markdown格式
+    return simpleMarkdownParse(content);
+  }
+}
+
 // 为每个section定义独立的API参数
 const sectionConfigs = {
   section1: {
@@ -295,20 +395,8 @@ function typeMessage(content, messageId, sectionId) {
   // 将新内容添加到当前消息内容
   state.currentMessageContent += content;
   
-  // 检查是否为markdown格式并解析
-  if (isMarkdown(state.currentMessageContent)) {
-    // 如果是markdown，使用marked解析完整内容
-    if (typeof marked !== 'undefined') {
-      state.currentSessionBubble.innerHTML = marked.parse(state.currentMessageContent);
-    } else {
-      // 如果marked未定义，则使用普通文本
-      state.currentSessionBubble.innerHTML = '<p>' + escapeHtml(state.currentMessageContent) + '</p>';
-      console.warn('marked库未加载，无法解析Markdown');
-    }
-  } else {
-    // 如果不是markdown，使用文本内容
-    state.currentSessionBubble.innerHTML = '<p>' + escapeHtml(state.currentMessageContent) + '</p>';
-  }
+  // 使用统一的Markdown解析函数
+  state.currentSessionBubble.innerHTML = parseMarkdown(state.currentMessageContent);
   
   scrollToBottom(messageContainer);
   
@@ -342,7 +430,7 @@ function createTypingIndicator() {
     '<div class="avatar">' +
       '<div class="ai-icon">' +
         // 注意：请将下面的路径替换为您实际的PNG图片路径
-        '<img src="https://i.postimg.cc/g0zdGspF/AI.png" width="24" height="24" alt="AI头像">' +
+        '<img src="D:桌面文件/素材/AI头像.png" width="24" height="24" alt="AI头像">' +
       '</div>' +
     '</div>' +
     '<div class="message-content">' +
@@ -411,27 +499,14 @@ function createAIMessage(text) {
   var messageDiv = document.createElement('div');
   messageDiv.className = 'message ai-message';
   
-  // 检查是否为markdown格式并解析
-  var messageContent;
-  if (isMarkdown(text)) {
-    // 如果是markdown，使用marked解析内容
-    if (typeof marked !== 'undefined') {
-      messageContent = marked.parse(text);
-    } else {
-      // 如果marked未定义，则使用普通文本
-      messageContent = '<p>' + escapeHtml(text) + '</p>';
-      console.warn('marked库未加载，无法解析Markdown');
-    }
-  } else {
-    // 如果不是markdown，使用转义后的文本内容
-    messageContent = '<p>' + escapeHtml(text) + '</p>';
-  }
+  // 使用统一的Markdown解析函数
+  var messageContent = parseMarkdown(text);
   
   messageDiv.innerHTML = 
     '<div class="avatar">' +
       '<div class="ai-icon">' +
         // 注意：请将下面的路径替换为您实际的PNG图片路径
-        '<img src="AI头像.png" width="24" height="24" alt="AI头像">' +
+        '<img src="https://i.postimg.cc/g0zdGspF/AI.png" width="24" height="24" alt="AI头像">' +
       '</div>' +
     '</div>' +
     '<div class="message-content">' +
@@ -509,6 +584,9 @@ function startNewChat(sectionId) {
 
 // DOM加载完成后初始化
 window.onload = function() {
+  // 初始化Markdown解析器
+  initializeMarkdownParser();
+  
   // 初始化各section状态
   initializeSectionStates();
   
