@@ -10,14 +10,13 @@
 <body>
   <!-- 页面容器 -->
   <div class="page-container">
-    <!-- 更多功能 Section -->
     <!-- Section 1 -->
     <section class="section" id="section1">
       <div class="chat-container">
         <!-- 顶部标题栏 -->
         <header class="header animated-section" id="header-section1">
           <!-- 返回按钮 -->
-<button class="back-btn" onclick="window.location.href='https://frisy.github.io/xhs-show/'">
+<button class="back-btn" onclick="window.location.href='D:/桌面文件/新媒体工具/小红书功能/dhk.html'">
   <span class="btn-text">切换到小红书版本</span>
 </button>
           <h1 class="title">对标账号分析助手</h1>
@@ -34,7 +33,7 @@
               <div class="avatar">
                 <div class="ai-icon">
                   <!-- 将SVG替换为PNG图片，使用与script.js相同的路径 -->
-                  <img src="AI头像.png" width="24" height="24" alt="AI头像">
+                  <img src="D:\桌面文件\素材\AI头像.png" width="24" height="24" alt="AI头像">
                 </div>
               </div>
               <div class="message-content">
@@ -88,7 +87,7 @@
         <!-- 顶部标题栏 -->
         <header class="header animated-section" id="header-section2">
           <!-- 返回按钮 -->
-<button class="back-btn" onclick="window.location.href='https://frisy.github.io/xhs-show/'">
+<button class="back-btn" onclick="window.location.href='D:/桌面文件/新媒体工具/小红书功能/dhk.html'">
   <span class="btn-text">切换到小红书版本</span>
 </button>
           <h1 class="title">对标账号提取助手</h1>
@@ -105,7 +104,7 @@
               <div class="avatar">
                 <div class="ai-icon">
                   <!-- 将SVG替换为PNG图片 -->
-                  <img src="AI头像.png" width="24" height="24" alt="AI头像">
+                  <img src="D:\桌面文件\素材\AI头像.png" width="24" height="24" alt="AI头像">
                 </div>
               </div>
               <div class="message-content">
@@ -160,7 +159,7 @@
         <!-- 顶部标题栏 -->
         <header class="header animated-section" id="header-section3">
           <!-- 返回按钮 -->
-<button class="back-btn" onclick="window.location.href='https://frisy.github.io/xhs-show/'">
+<button class="back-btn" onclick="window.location.href='D:/桌面文件/新媒体工具/小红书功能/dhk.html'">
   <span class="btn-text">切换到小红书版本</span>
 </button>
           <h1 class="title">全网爆款搜集助手</h1>
@@ -177,7 +176,7 @@
               <div class="avatar">
                 <div class="ai-icon">
                   <!-- 将SVG替换为PNG图片 -->
-                  <img src="AI头像.png" width="24" height="24" alt="AI头像">
+                  <img src="D:\桌面文件\素材\AI头像.png" width="24" height="24" alt="AI头像">
                 </div>
               </div>
               <div class="message-content">
@@ -234,7 +233,7 @@
         <!-- 顶部标题栏 -->
         <header class="header animated-section" id="header-section4">
           <!-- 返回按钮 -->
-<button class="back-btn" onclick="window.location.href='https://frisy.github.io/xhs-show/'">
+<button class="back-btn" onclick="window.location.href='D:/桌面文件/新媒体工具/小红书功能/dhk.html'">
   <span class="btn-text">切换到小红书版本</span>
 </button>
           <h1 class="title">爆款选题生成助手</h1>
@@ -251,7 +250,7 @@
               <div class="avatar">
                 <div class="ai-icon">
                   <!-- 将SVG替换为PNG图片 -->
-                  <img src="AI头像.png" width="24" height="24" alt="AI头像">
+                  <img src="D:\桌面文件\素材\AI头像.png" width="24" height="24" alt="AI头像">
                 </div>
               </div>
               <div class="message-content">
@@ -307,7 +306,7 @@
         <!-- 顶部标题栏 -->
         <header class="header animated-section" id="header-section5">
           <!-- 返回按钮 -->
-<button class="back-btn" onclick="window.location.href='https://frisy.github.io/xhs-show/'">
+<button class="back-btn" onclick="window.location.href='D:/桌面文件/新媒体工具/小红书功能/dhk.html'">
   <span class="btn-text">切换到小红书版本</span>
 </button>
           <h1 class="title">提取二创助手</h1>
@@ -324,7 +323,7 @@
               <div class="avatar">
                 <div class="ai-icon">
                   <!-- 将SVG替换为PNG图片 -->
-                  <img src="AI头像.png" width="24" height="24" alt="AI头像">
+                  <img src="D:\桌面文件\素材\AI头像.png" width="24" height="24" alt="AI头像">
                 </div>
               </div>
               <div class="message-content">
@@ -389,7 +388,33 @@
     </button>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- 加载marked库，使用多个CDN源以确保可用性 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js" 
+          onerror="this.onerror=null;this.src='https://unpkg.com/marked@12.0.0/marked.min.js'"></script>
+  <script>
+    // 确保marked库加载完成后再执行后续脚本
+    (function() {
+      function checkMarked() {
+        if (typeof marked !== 'undefined') {
+          console.log('Marked库加载成功');
+        } else {
+          console.warn('Marked库加载失败，尝试备用CDN');
+          // 如果主CDN失败，尝试备用CDN
+          var script = document.createElement('script');
+          script.src = 'https://unpkg.com/marked@12.0.0/marked.min.js';
+          script.onload = function() {
+            console.log('Marked库从备用CDN加载成功');
+          };
+          script.onerror = function() {
+            console.error('所有CDN源都失败，Markdown渲染将不可用');
+          };
+          document.head.appendChild(script);
+        }
+      }
+      // 延迟检查，确保脚本已执行
+      setTimeout(checkMarked, 100);
+    })();
+  </script>
   <script src="script.js"></script>
   <script>
     // 左右按钮导航功能
