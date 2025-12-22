@@ -430,7 +430,7 @@ function createTypingIndicator() {
     '<div class="avatar">' +
       '<div class="ai-icon">' +
         // 注意：请将下面的路径替换为您实际的PNG图片路径
-        '<img src="D:桌面文件/素材/AI头像.png" width="24" height="24" alt="AI头像">' +
+        '<img src="AI头像.png" width="24" height="24" alt="AI头像">' +
       '</div>' +
     '</div>' +
     '<div class="message-content">' +
@@ -506,7 +506,7 @@ function createAIMessage(text) {
     '<div class="avatar">' +
       '<div class="ai-icon">' +
         // 注意：请将下面的路径替换为您实际的PNG图片路径
-        '<img src="https://i.postimg.cc/g0zdGspF/AI.png" width="24" height="24" alt="AI头像">' +
+        '<img src="AI头像.png" width="24" height="24" alt="AI头像">' +
       '</div>' +
     '</div>' +
     '<div class="message-content">' +
