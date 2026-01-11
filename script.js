@@ -104,23 +104,23 @@ function parseMarkdown(content) {
 // 为每个section定义独立的API参数
 const sectionConfigs = {
   section1: {
-    accessToken: "pat_njYeNvNAgBz08OrQIlCztE89uBYQFS0t36JHeBzDpE3SCuSY8zslv5ywCWulELnN",
+    accessToken: "pat_GJaXKBN6C6Ws8xIw2Ulbg6g9s5ljhv5TBhf5slNFGsznuBBNUOj6X0P85cTBHxlH",
     botId: "7539088830415503406"
   },
   section2: {
-    accessToken: "pat_njYeNvNAgBz08OrQIlCztE89uBYQFS0t36JHeBzDpE3SCuSY8zslv5ywCWulELnN",
+    accessToken: "pat_GJaXKBN6C6Ws8xIw2Ulbg6g9s5ljhv5TBhf5slNFGsznuBBNUOj6X0P85cTBHxlH",
     botId: "7542217747586039846"  // 不同的bot_id
   },
   section3: {
-    accessToken: "pat_njYeNvNAgBz08OrQIlCztE89uBYQFS0t36JHeBzDpE3SCuSY8zslv5ywCWulELnN",
+    accessToken: "pat_GJaXKBN6C6Ws8xIw2Ulbg6g9s5ljhv5TBhf5slNFGsznuBBNUOj6X0P85cTBHxlH",
     botId: "7542278322881904650"  // 不同的bot_id
   },
   section4: {
-    accessToken: "pat_njYeNvNAgBz08OrQIlCztE89uBYQFS0t36JHeBzDpE3SCuSY8zslv5ywCWulELnN",
+    accessToken: "pat_GJaXKBN6C6Ws8xIw2Ulbg6g9s5ljhv5TBhf5slNFGsznuBBNUOj6X0P85cTBHxlH",
     botId: "7542276266360487963"  // 不同的bot_id
   },
   section5: {
-    accessToken: "pat_njYeNvNAgBz08OrQIlCztE89uBYQFS0t36JHeBzDpE3SCuSY8zslv5ywCWulELnN",
+    accessToken: "pat_GJaXKBN6C6Ws8xIw2Ulbg6g9s5ljhv5TBhf5slNFGsznuBBNUOj6X0P85cTBHxlH",
     botId: "7542259933534863369"  // 不同的bot_id
   }
 };
